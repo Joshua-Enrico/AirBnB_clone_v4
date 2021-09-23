@@ -12,14 +12,18 @@ app.url_map.strict_slashes = False
 
 
 # begins rendering
-@app.route('/0-hbnb')
+@app.route('/1-hbnb')
 def filters():
     """load filters"""
     cache_id = uuid4()
     states = storage.all(State).values()
     amenities = storage.all(Amenity).values()
     places = storage.all(Place).values()
-    return render_template('0-hbnb.html', states=states, amenities=amenities, places=places, cache_id=cache_id)
+    return render_template('2-hbnb.html',
+                           states=states,
+                           amenities=amenities,
+                           places=places,
+                           cache_id=cache_id)
 
 
 @app.teardown_appcontext
@@ -29,4 +33,5 @@ def do_teardown(self):
 
 
 if __name__ == '__main__':
+    """Main Flask App"""
     app.run(host='0.0.0.0', port=5000)
