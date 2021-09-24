@@ -52,7 +52,7 @@ jobs:
         destination_branch: "master"
         github_token: ${{ secrets.GITHUB_TOKEN }}
         pr_label: "feature, automated pr"
-        pr_title: "[Example] Simple demo"
+        pr_title: "Merging New Features"
     - name: Enable Automerge
       run: gh pr merge --auto --merge "$PR_URL"
       env:
