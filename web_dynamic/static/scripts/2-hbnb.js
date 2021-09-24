@@ -15,7 +15,7 @@ $(document).ready(function () {
     console.log(AmenitiesChecked);
   });
 
-  const url = 'http://0.0.0.0:5001/api/v1/status/';
+  const url = 'http://172.23.179.134:5001/api/v1/status';
   $.getJSON(url, (data) => {
     if (data.status === 'OK') {
       $('DIV#api_status').addClass('available');
