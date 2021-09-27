@@ -79,17 +79,22 @@ section.filters button:hover {
 
 .popover h2 {
     margin-top: 0px;
-    margin-bottom: 3px;
-    margin-left: 25px;
+    margin-bottom: 0px;
 }
 
 .locations > .popover > li {
-    margin-bottom: 20px;
-    margin-top: 0px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .locations > .popover > li > ul {
-    padding-left: 35px;
+    padding-left: 20px;
+    flex: 0 1 100%;
+    margin-top: 5px;
 }
 
 .locations > .popover > li > ul > li {
