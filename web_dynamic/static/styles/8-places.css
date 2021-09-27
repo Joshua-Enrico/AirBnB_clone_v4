@@ -35,7 +35,12 @@
 }
 
 .places h2 {
-        font-size: 30px;
+    font-size: 30px;
+    margin: 0 20% 0 0;
+    align-self: center;
+}
+.places .amenities h2 {
+    font-size: 20px;
     margin: 0 20% 0 0;
     align-self: center;
 }
@@ -118,4 +123,27 @@
 .description > p {
     margin-top: 10px;
     margin-bottom: 20px;
+}
+
+.container .places .reviews h2 {
+    text-align: left;
+}
+
+.container .places .reviews h2 {
+    font-size: 16px;
+    border-bottom: 1px solid #DDDDDD;
+    margin-top: 5px;
+}
+
+.container .places .reviews ul {
+    list-style-type: none;
+}
+
+.container .places .reviews h3 {
+    font-size: 14px;
+}
+
+.container .places .reviews li {
+    font-size: 12px;
+    margin-bottom: 10px;
 }
