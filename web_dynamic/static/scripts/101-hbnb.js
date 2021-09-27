@@ -112,7 +112,7 @@ $(document).ready(function () {
       amenities[amenity.id] = amenity.name;
     }
   });
-  console.log(amenities)
+  console.log(amenities);
 
   $.ajax({
     type: 'POST',
@@ -153,12 +153,31 @@ $(document).ready(function () {
       <div class="description">
         ${place.description}
       </div>
-      <div class="reviews">
+      <div class="reviews" data-id="${place.id}">
       <h2>Reviews <span class="reviewSpan" data-id="${place.id}">show</span></h2>
-      <ul>
+      <ul data-id="${place.id}">
+      </ul>
     </article> <!-- End 1 PLACE Article -->`;
         $('section.places').append(template);
       }
+      $('.reviewSpan').click(function (event) {
+        $.ajax('http://172.23.179.134:5001/api/v1/places/' + $(this).attr('data-id') + '/reviews').done(function (data) {
+          const FirstPlace = data[0];
+          //            $('span').toggle('reviewSpan hideReview');\
+          if ($("span[data-id='" + FirstPlace.place_id + "']").hasClass('hideReview') === false) {
+            for (const review of data) {
+              $(".reviews ul[data-id='" + review.place_id + "']").append(`<li>${review.text}</li>`);
+            }
+            $("span[data-id='" + FirstPlace.place_id + "']").addClass('hideReview');
+            $("span[data-id='" + FirstPlace.place_id + "']").text('hide');
+          } else if ($("span[data-id='" + FirstPlace.place_id + "']").hasClass('hideReview') === true) {
+            const FirstPlace = data[0];
+            $(".reviews ul[data-id='" + FirstPlace.place_id + "']").empty();
+            $("span[data-id='" + FirstPlace.place_id + "']").removeClass('hideReview');
+            $("span[data-id='" + FirstPlace.place_id + "']").text('show');
+          }
+        });
+      });
     }
   });
 
@@ -206,25 +225,26 @@ $(document).ready(function () {
       </div>
       <div class="reviews" data-id="${place.id}">
       <h2>Reviews <span class="reviewSpan" data-id="${place.id}">show</span></h2>
-      <ul>
+      <ul data-id="${place.id}">
       </ul>
     </article> <!-- End 1 PLACE Article -->`;
           $('section.places').append(template);
         }
         $('.reviewSpan').click(function (event) {
           $.ajax('http://172.23.179.134:5001/api/v1/places/' + $(this).attr('data-id') + '/reviews').done(function (data) {
-            const staid = $(this).attr('data-id');
-            console.log(staid);
-          $('span').addClass('hideReview');
-            if ($('.reviewSpan').text('show')) {
+            const FirstPlace = data[0];
+            //            $('span').toggle('reviewSpan hideReview');\
+            if ($("span[data-id='" + FirstPlace.place_id + "']").hasClass('hideReview') === false) {
               for (const review of data) {
-                $('span[data-id^="' + staid + '"] > ul').append(`<li>${review.text}</li>`);
+                $(".reviews ul[data-id='" + review.place_id + "']").append(`<li>${review.text}</li>`);
               }
-        console.log($('.reviewSpan li'));
-        $('.hideReview').text('hide');
-            } else if ($('.hideReview').text('hide')){
-              $('.reviews ul').empty();
-        $('.reviewSpan').text('show');
+              $("span[data-id='" + FirstPlace.place_id + "']").addClass('hideReview');
+              $("span[data-id='" + FirstPlace.place_id + "']").text('hide');
+            } else if ($("span[data-id='" + FirstPlace.place_id + "']").hasClass('hideReview') === true) {
+              const FirstPlace = data[0];
+              $(".reviews ul[data-id='" + FirstPlace.place_id + "']").empty();
+              $("span[data-id='" + FirstPlace.place_id + "']").removeClass('hideReview');
+              $("span[data-id='" + FirstPlace.place_id + "']").text('show');
             }
           });
         });
